@@ -23,6 +23,7 @@ public class IndexWriteHandler implements CellWriteHandler {
             Workbook workbook = writeSheetHolder.getSheet().getWorkbook();
             CreationHelper helper = workbook.getCreationHelper();
             Hyperlink hyperlink = helper.createHyperlink(HyperlinkType.DOCUMENT);
+            //设置调整地址，注意格式
             hyperlink.setAddress("#"+cell.getStringCellValue()+"!A1");
             CellStyle link_style = workbook.createCellStyle();
             Font font = workbook.createFont();
@@ -31,7 +32,6 @@ public class IndexWriteHandler implements CellWriteHandler {
             link_style.setFont(font);
             cell.setHyperlink(hyperlink);
             cell.setCellStyle(link_style);
-            System.out.println(cell.getStringCellValue());
         }
 
     }

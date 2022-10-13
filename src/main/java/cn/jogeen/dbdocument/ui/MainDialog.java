@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * @Autor  jogeen
+ * @Autor jogeen
  */
 public class MainDialog extends JDialog {
     private JPanel contentPane;
@@ -44,26 +44,26 @@ public class MainDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        mainDialog=this;
+        mainDialog = this;
         buttonOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 database = (String) database_list.getSelectedValue();
                 DataBaseDao dataBaseDao = new DataBaseDaoImpl(address, port, database, username, password);
-                List<Table> tablse = dataBaseDao.showTables(database);
-                for (Table table : tablse) {
+                List<Table> tables = dataBaseDao.showTables(database);
+                for (Table table : tables) {
                     List<Column> columns = dataBaseDao.showColumns(database, table.getTableName());
                     table.setColumnList(columns);
                 }
                 dataBaseDao.closeConnection();
                 ExcelService excelService = new ExcelService();
-                try{
-                    excelService.buildExcel(path_label.getText(), database, tablse);
-                }catch (Exception e1){
-                    JOptionPane.showMessageDialog(null,"生成失败","生成失败",JOptionPane.ERROR_MESSAGE);
+                try {
+                    excelService.buildExcel(path_label.getText(), database, tables);
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null, "生成失败", "生成失败", JOptionPane.ERROR_MESSAGE);
                 }
 
-                JOptionPane.showMessageDialog(null,"生成成功","操作成功",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "生成成功", "操作成功", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -96,7 +96,7 @@ public class MainDialog extends JDialog {
                 try {
                     List<String> databaseNames = ConnectionUtils.testConnection(address, port, username, password);
                     if (databaseNames.isEmpty()) {
-                        JOptionPane.showMessageDialog(null,"链接失败","链接失败",JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "链接失败", "链接失败", JOptionPane.WARNING_MESSAGE);
                     }
 
                     DefaultListModel<String> listModel = new DefaultListModel<String>();
@@ -106,7 +106,7 @@ public class MainDialog extends JDialog {
 
                     database_list.setModel(listModel);
                 } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(null,"链接失败","链接失败",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "链接失败", "链接失败", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -115,9 +115,9 @@ public class MainDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 jfc.setFileSelectionMode(1);
                 int i = jfc.showOpenDialog(null);
-                if(i==1){
+                if (i == 1) {
                     return;
-                }else{
+                } else {
                     File selectedFile = jfc.getSelectedFile();
                     path_label.setText(selectedFile.getAbsolutePath());
                 }
@@ -125,17 +125,9 @@ public class MainDialog extends JDialog {
         });
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
-
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
-    public static void main(String[] args) {
-
-    }
 }

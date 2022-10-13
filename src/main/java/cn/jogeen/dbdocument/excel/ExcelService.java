@@ -5,7 +5,6 @@ import cn.jogeen.dbdocument.jdbc.model.Column;
 import cn.jogeen.dbdocument.jdbc.model.Table;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.util.StringUtils;
 import com.alibaba.excel.write.metadata.WriteSheet;
 
 import java.io.File;
@@ -15,6 +14,7 @@ import java.util.List;
 public class ExcelService {
 
     public void buildExcel(String path, String database, List<Table> tables) {
+        //创建目录
         File dir = new File(path);
         if (!dir.exists()) {
             dir.mkdir();

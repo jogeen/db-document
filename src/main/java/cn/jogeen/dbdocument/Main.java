@@ -1,6 +1,7 @@
 package cn.jogeen.dbdocument;
 
 import cn.jogeen.dbdocument.excel.ExcelService;
+import cn.jogeen.dbdocument.jdbc.dao.DataBaseDao;
 import cn.jogeen.dbdocument.jdbc.dao.DataBaseDaoImpl;
 import cn.jogeen.dbdocument.jdbc.model.Column;
 import cn.jogeen.dbdocument.jdbc.model.Table;
@@ -15,18 +16,21 @@ public class Main {
         uiStart();
     }
 
+    /**
+     * 没有UI界面启动方法
+     */
     private static void noUiStart() {
 
-        String ip ="localhost";
+        String ip = "localhost";
         Integer port = 3306;
         String database = "springboot_demo";
         String username = "root";
         String password = "1234";
         String path = "c:\\excel";
 
-        DataBaseDaoImpl dataBaseDao = new DataBaseDaoImpl(ip, port, database, username, password);
+        DataBaseDao dataBaseDao = new DataBaseDaoImpl(ip, port, database, username, password);
         List<Table> tables = dataBaseDao.showTables(database);
-        for (Table table : tables) {
+            for (Table table : tables) {
             List<Column> columns = dataBaseDao.showColumns(database, table.getTableName());
             table.setColumnList(columns);
         }
@@ -34,7 +38,10 @@ public class Main {
         excelService.buildExcel(path, database, tables);
     }
 
-    public static void uiStart(){
+    /**
+     * 有UI界面启动方法（Swing）
+     */
+    public static void uiStart() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");//设置windows的窗口风格
         } catch (ClassNotFoundException e) {
