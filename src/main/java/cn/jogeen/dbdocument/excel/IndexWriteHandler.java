@@ -23,7 +23,7 @@ public class IndexWriteHandler implements CellWriteHandler {
             Workbook workbook = writeSheetHolder.getSheet().getWorkbook();
             CreationHelper helper = workbook.getCreationHelper();
             Hyperlink hyperlink = helper.createHyperlink(HyperlinkType.DOCUMENT);
-            hyperlink.setAddress(cell.getStringCellValue());
+            hyperlink.setAddress("#"+cell.getStringCellValue()+"!A1");
             CellStyle link_style = workbook.createCellStyle();
             Font font = workbook.createFont();
             font.setUnderline(Font.U_SINGLE);

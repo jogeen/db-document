@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface DataBaseDao {
 
-    public List<Table> showTables(String database);
+     List<Table> showTables(String database);
 
-    public List<Column> showColumns(String database, String tableName);
+     List<Column> showColumns(String database, String tableName);
 
-    public void closeConnection();
+     void closeConnection();
 }

@@ -15,6 +15,10 @@ import java.util.List;
 public class ExcelService {
 
     public void buildExcel(String path, String database, List<Table> tables) {
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
         File file = new File(path + "/" + database + ".xls");
         List<Index> list = new ArrayList<Index>();
         for (Table table : tables) {

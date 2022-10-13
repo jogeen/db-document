@@ -34,7 +34,7 @@ public class MainDialog extends JDialog {
 
 
     String address;
-    String port;
+    Integer port;
     String username;
     String password;
     String database;
@@ -90,7 +90,7 @@ public class MainDialog extends JDialog {
         connect_btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 address = t_address.getText();
-                port = t_port.getText();
+                port = Integer.parseInt(t_port.getText());
                 username = t_username.getText();
                 password = t_password.getText();
                 try {
@@ -136,20 +136,6 @@ public class MainDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");//设置windows的窗口风格
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        MainDialog dialog = new MainDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+
     }
 }

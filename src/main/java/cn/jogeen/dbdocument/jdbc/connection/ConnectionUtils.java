@@ -8,7 +8,7 @@ public class ConnectionUtils {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 
 
-    public static Connection getConnection(String ip, String port, String databaseName, String username, String password) {
+    public static Connection getConnection(String ip, Integer port, String databaseName, String username, String password) {
         String dbUrl = String.format("jdbc:mysql://%s:%s/%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC", ip, port, databaseName);
         Connection conn = null;
         // 注册 JDBC 驱动
@@ -24,7 +24,7 @@ public class ConnectionUtils {
     }
 
 
-    public static List<String> testConnection(String ip, String port, String username, String password) throws ClassNotFoundException, SQLException {
+    public static List<String> testConnection(String ip, Integer port, String username, String password) throws ClassNotFoundException, SQLException {
         List<String> database = new ArrayList<String>();
         String dbUrl = String.format("jdbc:mysql://%s:%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC", ip, port);
         // 注册 JDBC 驱动
@@ -62,8 +62,4 @@ public class ConnectionUtils {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        List<String> strings = testConnection("172.32.6.176", "3306", "stp", "jD360$sa");
-        System.out.println(strings);
-    }
 }

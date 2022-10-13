@@ -14,13 +14,13 @@ import java.util.List;
 public class DataBaseDaoImpl implements DataBaseDao {
 
     private String ip;
-    private String port;
+    private Integer port;
     private String databaseName;
     private String username;
     private String password;
     private Connection conn;
 
-    public DataBaseDaoImpl(String ip, String port, String databaseName, String username, String password) {
+    public DataBaseDaoImpl(String ip, Integer port, String databaseName, String username, String password) {
         this.ip = ip;
         this.port = port;
         this.databaseName = databaseName;
